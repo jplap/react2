@@ -1,0 +1,85 @@
+import React, {Component} from 'react';
+import { TextareaAutosize } from '@material-ui/core';
+
+//https://mdbootstrap.com/docs/react/modals/basic/
+
+import { Modal, Button } from 'react-bootstrap';
+
+
+
+
+
+
+class BlockPartData extends Component{
+
+    constructor(props) {
+        super();
+        this.classes = props;
+        this.state = {
+            dataValue:"",
+            show:false
+        };
+
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
+        this.getValue = this.getValue.bind(this);
+        this.handleChangeData = this.handleChangeData.bind(this);
+
+
+
+    }
+
+    getValue(){
+        return this.state.dataValue;
+    }
+
+    handleClose(){
+        this.setState({show:false})
+    }
+    handleShow (){
+        this.setState({show:true})
+    }
+    handleChangeData(event){
+        this.setState({ dataValue: event.target.value })
+    }
+
+    render(){
+        const { classes } = this.props;
+
+        return (
+            <>
+                <Button variant="secondary" onClick={this.handleShow}>
+                    Data
+                </Button>
+
+                <Modal show={this.state.show} onHide={this.handleClose} animation={false}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>PartData</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <TextareaAutosize onChange={this.handleChangeData}></TextareaAutosize>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={this.handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+
+
+
+
+        );
+    }
+
+}
+
+
+
+
+export default  (BlockPartData);
+

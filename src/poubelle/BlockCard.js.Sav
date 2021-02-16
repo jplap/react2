@@ -1,0 +1,103 @@
+import React, {Component} from 'react';
+
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+//https://material-ui.com/api/typography/
+const styles = {
+    card: {
+        minWidth: 275,
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        marginBottom: 16,
+        fontSize: 14,
+        'text-align': 'center'
+    },
+    pos: {
+        marginBottom: 1,
+    },
+    center: {
+        'text-align': 'center'
+    }
+};
+const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            height:'1px',
+            color: color,
+            backgroundColor: color,
+
+        }}
+    />
+);
+class BlockCard extends Component{
+
+    constructor(props) {
+        super();
+        this.classes = props;
+        /*
+        this.propTypes = {
+            classes: PropTypes.object.isRequired,
+        };
+
+         */
+        this.classes = styles;
+        this.onContent =  this.onContent.bind(this);
+
+    }
+    onContent(){
+        console.log("onconytent")
+        this.props.onReloadHandler(this.props.id);
+    }
+    render(){
+        //const bull = <span className={this.classes.bullet}>•</span>;
+        return (
+            <div>
+                <Card>
+                    <CardContent>
+
+                        <Typography align="center" variant="h3">
+                            Block
+                        </Typography>
+                        <Typography align="center" variant="h2"  >
+                            {this.props.title}
+
+                        </Typography>
+                        <ColoredLine color="black" />
+
+                        <Typography gutterBottom={true} color="textSecondary">
+                            Id: {this.props.id}
+                        </Typography>
+                        <Typography   color="textSecondary">
+                            Category: {this.props.category}
+                        </Typography>
+                        <Typography   color="textSecondary">
+                            Details:{this.props.details}
+                        </Typography>
+
+
+
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small" onClick={this.onContent}>Content</Button>
+                    </CardActions>
+                </Card>
+            </div>
+        );
+    }
+
+}
+
+
+
+
+export default (BlockCard);
+//export default withStyles(styles)(BlockCard);

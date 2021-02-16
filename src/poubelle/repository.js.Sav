@@ -1,0 +1,36 @@
+
+
+import sampleData  from '../populateServer/serverData.json'; // Relative path to your File
+
+var tagTable = [];
+var blRules = [];
+
+var PREFIX_INFO = "INFO: ";
+var PREFIX_ERROR = "ERROR: "
+
+
+
+function Repository (opts) {
+
+
+    this.data = sampleData; //fs.readFileSync(dirPath);
+
+    console.log(PREFIX_INFO + "data" + this.data);
+    return this.data;
+
+}
+
+Repository.prototype.getData = function()
+{
+
+    return (this.data)
+
+}
+
+
+
+Repository.init = function(opts)
+{
+    return new Repository(opts);
+}
+export default Repository;

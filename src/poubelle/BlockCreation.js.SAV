@@ -1,0 +1,102 @@
+import React, { Component } from 'react';
+import BlockCategoryJs from "./BlockCategoryJs";
+import sessionFactorySource from "./repositoryFocus/sessionFactorySource";
+
+class BlockCreation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id:"",
+            name:"",
+            category:"",
+            childRefCategory: React.createRef(),
+            visible:false
+
+        };
+        this.props.onRegisterBlkCreation(this);
+
+        this.handleChangeDataId = this.handleChangeDataId.bind(this);
+        this.handleChangeDataName = this.handleChangeDataName.bind(this);
+        this.handleChangeDataCategory = this.handleChangeDataCategory.bind(this);
+
+
+    }
+
+
+    handleChangeDataId(event) {
+        this.setState({ id: event.target.value });
+    }
+    handleChangeDataName(event) {
+        this.setState({ name: event.target.value });
+    }
+    handleChangeDataCategory(event) {
+        this.setState({ category: event.target.value });
+    }
+    getData(){
+
+        return this.state;
+    }
+    getCategory(){
+
+        return this.state.childRefCategory.current.getCategory();
+    }
+    getId(){
+
+        return sessionFactorySource.get().generateGuid();
+    }
+
+    setVisible() {
+        this.setState({visible: true}, () => {
+            this.forceUpdate();
+        })
+    }
+
+    onAddBlock(){
+
+    }
+    render() {
+        var items =[]
+
+        items.push( <button className="bt-action" onClick={this.onAddBlock}> Add Block</button>)
+        if (this.state.visible == true ) {
+            items.push(<form>
+
+                    <br/>
+
+
+                    <label>name : </label>
+                    <input type="textarea"
+                           name="textValue"
+                           onChange={this.handleChangeDataName}
+                    />
+                    &nbsp;&nbsp;
+                    <BlockCategoryJs ref={this.state.childRefCategory}></BlockCategoryJs>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+                </form>
+            )
+        }
+
+            return (
+                items
+            );
+
+    }
+}
+
+export default BlockCreation;
+
+
+/*
+<label>id : </label>
+<input type="textarea"
+       name="textValue"
+       onChange={this.handleChangeDataId}
+/>
+<label>category : </label>
+<input type="textarea"
+name="textValue"
+onChange={this.handleChangeDataCategory}
+/>
+
+ */

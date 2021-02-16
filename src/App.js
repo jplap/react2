@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React  from 'react';
+import Products from './Products.js';
+
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+      //const [gridApi, setGridApi] = useState(null);
+      //const [gridColumnApi, setGridColumnApi] = useState(null);
+/*
+      var rowData= [
+
+          {id: 'Toyota', name: 'Celica', category: 35000},
+          {id: 'Ford', name: 'Mondeo', category: 32000},
+          {id: 'Porsche', name: 'Boxter', category: 72000}
+
+
+      ]
+
+ */
+    return (
+        <div>
+
+          <section>
+            <Products ></Products>
+          </section>
+
+
+
+        </div>
+    );
+  }
 }
 
 export default App;
